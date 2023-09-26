@@ -104,7 +104,9 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/feedback');
+                  },
                   icon: const Icon(Icons.add),
                   label: const Text(
                     'ADD FEEDBACK',

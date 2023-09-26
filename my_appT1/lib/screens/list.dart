@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../ui/feedback_input.dart';
 import '../ui/item.dart';
 
 class ListScreen extends StatelessWidget {

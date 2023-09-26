@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../ui/feedback_input.dart';
 
 class FeedbackScreen extends StatelessWidget {
+  const FeedbackScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,12 +36,10 @@ class FeedbackScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24.0,),
             ElevatedButton(
-              onPressed: () {
-                print("hello world");
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
-                minimumSize: const Size(double.infinity, 50.0)// Set the button color
+                minimumSize: const Size(double.infinity, 50.0)
               ),
               child: const Text('SUBMIT'),
             ),

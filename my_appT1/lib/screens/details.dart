@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import '../ui/feedback_input.dart';
-import '../ui/item.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key});
+  const DetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

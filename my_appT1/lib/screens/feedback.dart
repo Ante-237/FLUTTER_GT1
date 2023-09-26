@@ -7,12 +7,12 @@ class FeedbackScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          title: Text('Feedback'),
+          title: const Text('Feedback'),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

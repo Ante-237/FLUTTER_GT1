@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './screens/Feedback.dart';
+import './screens/feedback.dart';
+import './screens/List.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,9 +11,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Izzeddin screens',
-      initialRoute: '/feedback',
+      initialRoute: '/list',
       routes: {
         '/feedback': (context) => FeedbackScreen(),
+        '/list': (context) => const ListScreen(),
       },
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const Lingua());
@@ -27,6 +28,23 @@ class _Lingua extends State {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(title: "Lingua Pal",
+    theme: ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen, brightness: Brightness.dark),
+      textTheme:  TextTheme(displayLarge: const TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+        titleLarge: GoogleFonts.comfortaa(
+          fontSize: 30,
+          fontStyle : FontStyle.normal,
+        ),
+        bodyMedium: GoogleFonts.merriweather(),
+        displaySmall: GoogleFonts.pacifico(),
+      ),
+    ),
+
+
     home: Scaffold(
       body: Center(child: _pages.elementAt(_currentPage)),
       bottomNavigationBar: BottomNavigationBar(
@@ -85,12 +103,44 @@ class  Category extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return const Card(
-      color: Color.fromARGB(100, 255, 255, 1),
-      shadowColor: Color.fromARGB(10, 100, 100, 100),
-      child: Icon(Icons.bolt),
-
-      );
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.surfaceVariant,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+      ),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                icon: const Icon(Icons.more_vert),
+                onPressed: () {},
+              ),
+            ),
+            const SizedBox(height: 1),
+            const Align(
+              alignment: Alignment.bottomLeft,
+              child: Text('Category'),
+            ),
+            const SizedBox(height: 30,),
+            const Align(
+              alignment: Alignment.bottomCenter,
+              child: Icon(
+                Icons.cookie,
+                color: Colors.pink,
+                size: 60,
+                semanticLabel: 'Text to announce in accessibility modes',
+              ),
+              ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

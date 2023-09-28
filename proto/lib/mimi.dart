@@ -20,7 +20,7 @@ class CoverPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,8 +31,8 @@ class CoverPage extends StatelessWidget {
                 width: 300.0,
                 height: 300.0,
               ),
-              SizedBox(height: 20.0),
-              Text(
+              const SizedBox(height: 20.0),
+              const Text(
                 'Go to app for slangs in local areas compared to your previous locations',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -40,7 +40,7 @@ class CoverPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
                   // Navigate to the Login page
@@ -51,8 +51,8 @@ class CoverPage extends StatelessWidget {
                 },
                 child: Text('Log In'),
               ),
-              SizedBox(height: 10.0),
-              Row(
+              const SizedBox(height: 10.0),
+              const Row(
                 children: <Widget>[
                   Expanded(
                     child: Divider(
@@ -76,7 +76,7 @@ class CoverPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextButton(
                 onPressed: () {
                   // Navigate to the Signup page
@@ -85,7 +85,7 @@ class CoverPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => SignupPage()),
                   );
                 },
-                child: Text('Sign Up'),
+                child: const Text('Sign Up'),
               ),
             ],
           ),
@@ -100,11 +100,11 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login Page'),
+        title: const Text('Login Page'),
       ),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -115,8 +115,8 @@ class LoginPage extends StatelessWidget {
                 width: 300.0,
                 height: 300.0,
               ),
-              SizedBox(height: 5.0),
-              Column(
+              const SizedBox(height: 5.0),
+              const Column(
                 children: <Widget>[
                   // Email Field
                   Column(
@@ -156,7 +156,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 15.0),
+              const SizedBox(height: 15.0),
               ElevatedButton(
                 onPressed: () {
                   // Implement your login logic here
@@ -212,8 +212,8 @@ class SignupPage extends StatelessWidget {
                 width: 300.0,
                 height: 300.0,
               ),
-              SizedBox(height: 5.0),
-              Column(
+              const SizedBox(height: 5.0),
+              const Column(
                 children: <Widget>[
                   // Email Field (for Signup)
                   Column(
@@ -253,7 +253,7 @@ class SignupPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 15.0),
+              const SizedBox(height: 15.0),
               ElevatedButton(
                 onPressed: () {
                   // Implement signup logic here
@@ -266,7 +266,7 @@ class SignupPage extends StatelessWidget {
                 },
                 child: Text('Sign Up'),
               ),
-              SizedBox(height: 15.0), // Add some spacing between the buttons
+              const SizedBox(height: 15.0), // Add some spacing between the buttons
               Column(
                 children: <Widget>[
                   TextButton(
@@ -277,7 +277,7 @@ class SignupPage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => LoginPage()),
                       );
                     },
-                    child: Text('Already have an account? Login'),
+                    child: const Text('Already have an account? Login'),
                   ),
                 ],
               ),
@@ -294,11 +294,11 @@ class CreateProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Profile Page'),
+        title: const Text('Create Profile Page'),
       ),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const  EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -314,7 +314,7 @@ class CreateProfilePage extends StatelessWidget {
                     width: 10.0,
                   ),
                 ),
-                child: Center(
+                child: const Center(
                   child: Icon(
                     Icons.add_a_photo,
                     size: 120.0,
@@ -322,9 +322,9 @@ class CreateProfilePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               // Full Name Section
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text('Full Name'),
@@ -339,13 +339,13 @@ class CreateProfilePage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               // Save Profile Button
               ElevatedButton(
                 onPressed: () {
                   // Implement save profile logic here
                 },
-                child: Text('Save Profile'),
+                child: const Text('Save Profile'),
               ),
             ],
           ),

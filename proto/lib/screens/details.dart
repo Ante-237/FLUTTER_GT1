@@ -29,7 +29,7 @@ class DetailsScreen extends StatelessWidget {
           ),
           const Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: 16.0), // Padding for other elements
+                horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

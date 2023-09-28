@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Izzeddin screens',
-      initialRoute: '/details',
+      initialRoute: '/list',
       routes: {
         '/feedback': (context) => const FeedbackScreen(),
         '/list': (context) => const ListScreen(),

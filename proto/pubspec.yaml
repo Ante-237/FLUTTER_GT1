@@ -38,4 +38,3 @@ flutter:
   assets:
     - Assets/Images/app_logo.png
   uses-material-design: true
-

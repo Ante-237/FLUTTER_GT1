@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/index.dart';
-import 'package:proto/mimi.dart';
+import 'package:proto/loginNavMain.dart';
 
 /*
 void main() {

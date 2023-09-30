@@ -16,7 +16,7 @@ class MyAppI extends StatelessWidget {
         '/feedback': (context) => const FeedbackScreen(),
         '/list': (context) => const ListScreen(),
         '/details': (context) => const DetailsScreen(),
-        '/NavMenuMain': (context) => const Home(),
+        '/NavMenuMain': (context) => const Lingua(),
       },
     );
   }

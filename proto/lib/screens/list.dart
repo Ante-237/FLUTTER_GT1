@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../ui/item.dart';
-import 'package:proto/NavMenuMain.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({super.key});
@@ -12,7 +11,10 @@ class ListScreen extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.popAndPushNamed(
+                context,
+                '/NavMenuMain',
+              );
             },
           ),
           title: const Text('List'),

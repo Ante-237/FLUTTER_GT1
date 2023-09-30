@@ -33,7 +33,7 @@ class _Lingua extends State {
     return MaterialApp(title: "Lingua Pal",
     theme: ThemeData(
       useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent, brightness: Brightness.dark),
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue, brightness: Brightness.light),
       textTheme:  TextTheme(displayLarge: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.bold,
@@ -57,7 +57,7 @@ class _Lingua extends State {
           BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Profile"),
         ],
         currentIndex: _currentPage,
-        fixedColor: Colors.green,
+        fixedColor: Colors.blue,
         onTap: (int inIndex){
           setState(() {
             _currentPage = inIndex;

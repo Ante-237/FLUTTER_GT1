@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:proto/NavMenuMain.dart';
 import './screens/feedback.dart';
 import './screens/list.dart';
 import './screens/details.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyAppI extends StatelessWidget {
+  const MyAppI({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +16,7 @@ class MyApp extends StatelessWidget {
         '/feedback': (context) => const FeedbackScreen(),
         '/list': (context) => const ListScreen(),
         '/details': (context) => const DetailsScreen(),
+        '/NavMenuMain': (context) => const Lingua(),
       },
     );
   }

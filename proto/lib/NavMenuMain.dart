@@ -1,10 +1,16 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:proto/index.dart';
+import 'package:proto/loginNavMain.dart';
 
+/*
 void main() {
   runApp(const Lingua());
 }
+ */
 
 class Lingua extends  StatefulWidget{
   const Lingua({super.key});
@@ -30,7 +36,7 @@ class _Lingua extends State {
     return MaterialApp(title: "Lingua Pal",
     theme: ThemeData(
       useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen, brightness: Brightness.dark),
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue, brightness: Brightness.light),
       textTheme:  TextTheme(displayLarge: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.bold,
@@ -54,7 +60,7 @@ class _Lingua extends State {
           BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Profile"),
         ],
         currentIndex: _currentPage,
-        fixedColor: Colors.green,
+        fixedColor: Colors.blue,
         onTap: (int inIndex){
           setState(() {
             _currentPage = inIndex;
@@ -80,8 +86,8 @@ class Home extends StatelessWidget{
       ),
       body: GridView.count(
         padding: const EdgeInsets.all(4.0),
-        crossAxisCount: 2, childAspectRatio: 1.0,
-        mainAxisSpacing: 4.0, crossAxisSpacing : 2.0,
+        crossAxisCount: 2, childAspectRatio: 1.5,
+        mainAxisSpacing: 6.0, crossAxisSpacing : 4.0,
         children: const [
           GridTile(child: Category()),
           GridTile(child: Category()),
@@ -103,41 +109,51 @@ class  Category extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        side: BorderSide(
-          color: Theme.of(context).colorScheme.surfaceVariant,
+    return FloatingActionButton.small(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MyAppI()),
+        );
+      },
+      child: Card(
+        elevation: 1,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(12)),
-      ),
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                icon: const Icon(Icons.more_vert),
-                onPressed: () {},
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(12, 4, 4, 4),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: const Icon(Icons.more_vert),
+                  onPressed: () {
+                    // more actions in future
+                  },
+                ),
               ),
-            ),
-            const SizedBox(height: 1),
-            const Align(
-              alignment: Alignment.bottomLeft,
-              child: Text('Category'),
-            ),
-            const SizedBox(height: 30,),
-            const Align(
-              alignment: Alignment.bottomCenter,
-              child: Icon(
-                Icons.cookie,
-                color: Colors.pink,
-                size: 60,
-                semanticLabel: 'Text to announce in accessibility modes',
+              const SizedBox(height: 1),
+              const Align(
+                alignment: Alignment.bottomLeft,
+                child: Text('Category'),
               ),
-              ),
-          ],
+              const SizedBox(height: 10,),
+              const Align(
+                alignment: Alignment.bottomCenter,
+                child: Icon(
+                  Icons.cookie,
+                  color: Colors.pink,
+                  size: 50,
+                  semanticLabel: 'Text to announce in accessibility modes',
+                ),
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -171,14 +187,17 @@ class ListSaved extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return const ListTile(
-      leading: Icon(Icons.save),
-      title: Text('Saved'),
-      subtitle: Text('Description'),
+    return const Card(
+      child: ListTile(
+        leading: Icon(Icons.save),
+        title: Text('Saved'),
+        subtitle: Text('Description'),
+      ),
     );
   }
 }
 
+/*
 class Profile extends StatelessWidget{
   const Profile({super.key});
 
@@ -199,3 +218,77 @@ class Profile extends StatelessWidget{
     );
   }
 }
+ */
+
+
+class Profile extends StatelessWidget {
+  const Profile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Profile')),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const  EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              // Profile Picture Section
+              const Image(image: AssetImage('Assets/Images/app_logo.png'), width: 200, height: 200,),
+              const SizedBox(height: 20,),
+              const TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder() ,
+                label: Text('FirstUser')),
+              ),
+              const TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder() ,
+                    label: Text('user@gmail.com')),
+              ),
+              const SizedBox(height: 30,),
+              const TextField(
+                maxLength: 30,
+                maxLengthEnforcement: MaxLengthEnforcement.none,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.edit),
+                  labelText: 'Name',
+                  hintText: 'Enter Preferred Name',
+                  helperText: 'avoid spaces',
+                ),
+              ),
+              const TextField(
+                maxLength: 20,
+                maxLengthEnforcement: MaxLengthEnforcement.none,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.edit),
+                  labelText: 'Email',
+                  hintText: 'Enter Preferred Email',
+                  helperText: 'avoid spaces',
+                ),
+              ),
+              const SizedBox(height: 20,),
+              ElevatedButton(
+                onPressed: () {
+                  // Implement save profile logic here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Lingua()),
+                  );
+                },
+                child: const Text('Save Profile'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+

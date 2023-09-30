@@ -3,9 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/index.dart';
 import 'package:proto/mimi.dart';
 
+/*
 void main() {
   runApp(const Lingua());
 }
+ */
 
 class Lingua extends  StatefulWidget{
   const Lingua({super.key});

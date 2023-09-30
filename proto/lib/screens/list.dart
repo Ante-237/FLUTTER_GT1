@@ -12,7 +12,7 @@ class ListScreen extends StatelessWidget {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context, '/NavMenuMain' );
+              Navigator.pop(context);
             },
           ),
           title: const Text('List'),

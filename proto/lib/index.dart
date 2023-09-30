@@ -4,12 +4,6 @@ import './screens/feedback.dart';
 import './screens/list.dart';
 import './screens/details.dart';
 
-/*
-void main() {
-  runApp(const MyAppI());
-}
- */
-
 class MyAppI extends StatelessWidget {
   const MyAppI({super.key});
 

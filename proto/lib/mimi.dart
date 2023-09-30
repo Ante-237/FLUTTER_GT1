@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proto/NavMenuMain.dart';
 
-void main() {
-  runApp(MyApp());
-}
 
 class MyApp extends StatelessWidget {
   @override
@@ -344,7 +342,7 @@ class CreateProfilePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Implement save profile logic here
-
+                  MaterialPageRoute(builder: (context) => const Lingua());
                 },
                 child: const Text('Save Profile'),
               ),

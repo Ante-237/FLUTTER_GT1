@@ -47,7 +47,7 @@ class CoverPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => LoginPage()),
                   );
                 },
-                child: Text('Log In'),
+                child: const Text('Log In'),
               ),
               const SizedBox(height: 10.0),
               const Row(
@@ -158,17 +158,21 @@ class LoginPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Implement your login logic here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Lingua()),
+                  );
                 },
-                child: Text('Login'),
+                child: const Text('Login'),
               ),
-              SizedBox(height: 15.0), // Add some spacing between the buttons
+              const SizedBox(height: 15.0), // Add some spacing between the buttons
               Column(
                 children: <Widget>[
                   TextButton(
                     onPressed: () {
                       // Implement the forgot password functionality
                     },
-                    child: Text('Forgot Password?'),
+                    child: const Text('Forgot Password?'),
                   ),
                   TextButton(
                     onPressed: () {
@@ -178,7 +182,7 @@ class LoginPage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => SignupPage()),
                       );
                     },
-                    child: Text('Sign Up'),
+                    child: const Text('Sign Up'),
                   ),
                 ],
               ),
@@ -195,11 +199,11 @@ class SignupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up Page'),
+        title: const Text('Sign Up Page'),
       ),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -342,7 +346,10 @@ class CreateProfilePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Implement save profile logic here
-                  MaterialPageRoute(builder: (context) => const Lingua());
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Lingua()),
+                  );
                 },
                 child: const Text('Save Profile'),
               ),

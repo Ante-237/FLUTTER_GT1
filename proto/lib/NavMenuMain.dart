@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:proto/index.dart';
+import 'package:proto/mimi.dart';
 
 void main() {
   runApp(const Lingua());
@@ -30,7 +31,7 @@ class _Lingua extends State {
     return MaterialApp(title: "Lingua Pal",
     theme: ThemeData(
       useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreen, brightness: Brightness.dark),
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent, brightness: Brightness.dark),
       textTheme:  TextTheme(displayLarge: const TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.bold,
@@ -119,7 +120,12 @@ class  Category extends StatelessWidget{
               alignment: Alignment.topRight,
               child: IconButton(
                 icon: const Icon(Icons.more_vert),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyAppI()),
+                  );
+                },
               ),
             ),
             const SizedBox(height: 1),

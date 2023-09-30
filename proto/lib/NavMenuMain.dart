@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/index.dart';
 import 'package:proto/loginNavMain.dart';
@@ -196,6 +197,7 @@ class ListSaved extends StatelessWidget{
   }
 }
 
+/*
 class Profile extends StatelessWidget{
   const Profile({super.key});
 
@@ -216,3 +218,77 @@ class Profile extends StatelessWidget{
     );
   }
 }
+ */
+
+
+class Profile extends StatelessWidget {
+  const Profile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Profile')),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const  EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              // Profile Picture Section
+              const Image(image: AssetImage('Assets/Images/app_logo.png'), width: 200, height: 200,),
+              const SizedBox(height: 20,),
+              const TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder() ,
+                label: Text('FirstUser')),
+              ),
+              const TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder() ,
+                    label: Text('user@gmail.com')),
+              ),
+              const SizedBox(height: 30,),
+              const TextField(
+                maxLength: 30,
+                maxLengthEnforcement: MaxLengthEnforcement.none,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.edit),
+                  labelText: 'Name',
+                  hintText: 'Enter Preferred Name',
+                  helperText: 'avoid spaces',
+                ),
+              ),
+              const TextField(
+                maxLength: 20,
+                maxLengthEnforcement: MaxLengthEnforcement.none,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.edit),
+                  labelText: 'Email',
+                  hintText: 'Enter Preferred Email',
+                  helperText: 'avoid spaces',
+                ),
+              ),
+              const SizedBox(height: 20,),
+              ElevatedButton(
+                onPressed: () {
+                  // Implement save profile logic here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Lingua()),
+                  );
+                },
+                child: const Text('Save Profile'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+

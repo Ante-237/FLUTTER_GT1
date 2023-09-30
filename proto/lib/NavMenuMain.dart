@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/index.dart';
@@ -83,8 +85,8 @@ class Home extends StatelessWidget{
       ),
       body: GridView.count(
         padding: const EdgeInsets.all(4.0),
-        crossAxisCount: 2, childAspectRatio: 1.0,
-        mainAxisSpacing: 4.0, crossAxisSpacing : 2.0,
+        crossAxisCount: 2, childAspectRatio: 1.5,
+        mainAxisSpacing: 6.0, crossAxisSpacing : 4.0,
         children: const [
           GridTile(child: Category()),
           GridTile(child: Category()),
@@ -106,46 +108,51 @@ class  Category extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        side: BorderSide(
-          color: Theme.of(context).colorScheme.surfaceVariant,
+    return FloatingActionButton.small(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MyAppI()),
+        );
+      },
+      child: Card(
+        elevation: 1,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(12)),
-      ),
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                icon: const Icon(Icons.more_vert),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyAppI()),
-                  );
-                },
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(12, 4, 4, 4),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: const Icon(Icons.more_vert),
+                  onPressed: () {
+                    // more actions in future
+                  },
+                ),
               ),
-            ),
-            const SizedBox(height: 1),
-            const Align(
-              alignment: Alignment.bottomLeft,
-              child: Text('Category'),
-            ),
-            const SizedBox(height: 30,),
-            const Align(
-              alignment: Alignment.bottomCenter,
-              child: Icon(
-                Icons.cookie,
-                color: Colors.pink,
-                size: 60,
-                semanticLabel: 'Text to announce in accessibility modes',
+              const SizedBox(height: 1),
+              const Align(
+                alignment: Alignment.bottomLeft,
+                child: Text('Category'),
               ),
-              ),
-          ],
+              const SizedBox(height: 10,),
+              const Align(
+                alignment: Alignment.bottomCenter,
+                child: Icon(
+                  Icons.cookie,
+                  color: Colors.pink,
+                  size: 50,
+                  semanticLabel: 'Text to announce in accessibility modes',
+                ),
+                ),
+            ],
+          ),
         ),
       ),
     );
@@ -179,10 +186,12 @@ class ListSaved extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return const ListTile(
-      leading: Icon(Icons.save),
-      title: Text('Saved'),
-      subtitle: Text('Description'),
+    return const Card(
+      child: ListTile(
+        leading: Icon(Icons.save),
+        title: Text('Saved'),
+        subtitle: Text('Description'),
+      ),
     );
   }
 }

@@ -26,3 +26,41 @@ Lingua Pal is an innovative mobile application designed to facilitate language c
 # Lingua Pal User Guide
 Welcome to the Lingua Pal User Guide! This guide will walk you through the key features of our app and help you make the most of your language-learning journey.
 
+1. Sign Up
+Step 1: Open the Lingua Pal app on your device.
+
+Step 2: Click on the "Sign Up" button to create your account.
+
+Step 3: Provide your email address and choose a secure password.
+
+Step 4: Confirm your password.
+
+Step 5: Click "Sign Up" to complete the registration process.
+
+2. Create Profile
+Step 1: After signing up, you'll be directed to your profile creation page.
+
+Step 2: Upload a profile picture by clicking on the "Choose Photo" section and selecting an image from your device.
+
+Step 3: Enter your full name in the "Full Name" input box.
+
+Step 4: Click "Save Profile" to complete your profile creation.
+
+3. Home Page
+Step 1: Once your profile is set up, you'll be directed to the Lingua Pal home page.
+
+Step 2: Here, you can see various categories to choose from, such as "Groceries," "Travel Phrases," "Local Slangs," and more.
+
+Step 3: Click on your preferred category to explore language conversion within that category.
+
+4. Category Selection (e.g., Groceries)
+Step 1: After selecting a category, you'll be taken to a dedicated page for that category (e.g., "Groceries").
+
+Step 2: Here, you can use the search bar to look up specific items you want to learn in both English and the local language (e.g., Kinyanrwanda).
+
+Step 3: You'll also see a list of the top most searched items in this category for quick reference.
+
+Step 4: To save an item for future reference, click on the "Save" button next to it.
+
+Step 5: To provide feedback or report an issue, use the "Feedback" option on the page to connect with our support team.
+

@@ -20,3 +20,5 @@ Lingua Pal is an innovative mobile application designed to facilitate language c
 2. Enhance Travel Experiences: For travelers, Lingua Pal enhances every aspect of your journey. Learn about the local culture, order from menus with ease, and negotiate prices like a seasoned local. Make deeper connections and create lasting memories.
 
 3. Save Time and Reduce Stress: Lingua Pal saves you time and reduces the stress of navigating unfamiliar territories. Quickly convert signs, menus, and directions into your preferred language, eliminating confusion and frustration.
+
+4. Learn Pronunciation: Lingua Pal's voice option helps you learn proper pronunciation, ensuring that you sound more like a native speaker. Impress locals with your language skills and build meaningful connections.

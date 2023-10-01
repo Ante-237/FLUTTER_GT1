@@ -16,3 +16,4 @@ Lingua Pal is an innovative mobile application designed to facilitate language c
 
 # Benefits:
 1. Break Down Language Barriers: With Lingua Pal, say goodbye to language barriers. Navigate any environment with confidence, whether it's a bustling market, a scenic hike, or a local eatery. Lingua Pal empowers you to communicate effectively and connect with people from diverse backgrounds.
+2. Enhance Travel Experiences: For travelers, Lingua Pal enhances every aspect of your journey. Learn about the local culture, order from menus with ease, and negotiate prices like a seasoned local. Make deeper connections and create lasting memories.

@@ -49,18 +49,31 @@ Step 4: Click "Save Profile" to complete your profile creation.
 3. Home Page
 Step 1: Once your profile is set up, you'll be directed to the Lingua Pal home page.
 
-Step 2: Here, you can see various categories to choose from, such as "Groceries," "Travel Phrases," "Local Slangs," and more.
+Step 2: Here, you can see various categories to choose from, such as "Groceries," "Numbers," and more.
 
 Step 3: Click on your preferred category to explore language conversion within that category.
 
 4. Category Selection (e.g., Groceries)
 Step 1: After selecting a category, you'll be taken to a dedicated page for that category (e.g., "Groceries").
 
-Step 2: Here, you can use the search bar to look up specific items you want to learn in both English and the local language (e.g., Kinyanrwanda).
+Step 2: Here, you can use the search bar to look up specific items you want to learn in both English and the local language (e.g., Kinyarwanda).
 
-Step 3: You'll also see a list of the top most searched items in this category for quick reference.
+Step 3: You'll also see a list of the top-most searched items in this category for quick reference.
 
 Step 4: To save an item for future reference, click on the "Save" button next to it.
 
 Step 5: To provide feedback or report an issue, use the "Feedback" option on the page to connect with our support team.
+
+5. Explore and Learn
+Step 1: Explore different items and phrases within your chosen category.
+
+Step 2: Click on an item to view its translation, pronunciation, and usage examples.
+
+Step 3: Use the "Voice" feature to hear the correct pronunciation.
+
+Step 4: Save items you want to revisit later by clicking on the "Save" button.
+
+Step 5: Use Lingua Pal as a powerful tool to learn new words and phrases effortlessly.
+
+Congratulations! You are now ready to use Lingua Pal to break down language barriers, enhance your travel experiences, and connect with people from diverse backgrounds. Enjoy exploring the world in your preferred language!
 

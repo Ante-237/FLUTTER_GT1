@@ -1,5 +1,5 @@
 # FLUTTER APP
-https://drive.google.com/file/d/1ShQEUoyFL9FvnClcRDKqz9Nm05jhiaCZ/view?usp=sharing
+Link to Prototype; https://drive.google.com/file/d/1ShQEUoyFL9FvnClcRDKqz9Nm05jhiaCZ/view?usp=sharing
 
 ----
 # Lingua Pal - Your Language Conversion Companion
@@ -13,3 +13,6 @@ Lingua Pal is an innovative mobile application designed to facilitate language c
 3. Save and View Later: Save important words and phrases for future reference. Lingua Pal enables you to build a personalized language library for quick access whenever you need it.
 
 4. User-Friendly Interface: Lingua Pal's intuitive and user-friendly interface ensures a seamless learning experience, whether you're a seasoned traveler or a first-time visitor.
+
+# Benefits:
+1. Break Down Language Barriers: With Lingua Pal, say goodbye to language barriers. Navigate any environment with confidence, whether it's a bustling market, a scenic hike, or a local eatery. Lingua Pal empowers you to communicate effectively and connect with people from diverse backgrounds.

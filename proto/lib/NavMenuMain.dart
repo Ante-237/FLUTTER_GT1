@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -184,6 +185,9 @@ class Saved extends StatelessWidget{
 // item list widget
 class ListSaved extends StatelessWidget{
   const ListSaved({super.key});
+
+  final amountController = TextEditingController();
+  CollectionReference collRef = FirebaseFirestore.instance.collection("category");
 
   @override
   Widget build(BuildContext context){

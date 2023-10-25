@@ -85,6 +85,16 @@ class CoverPage extends StatelessWidget {
                 },
                 child: const Text('Sign Up'),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  // Navigate to the Login page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => FirebaseForm()),
+                  );
+                },
+                child: const Text('Firebase form'),
+              ),
             ],
           ),
         ),
@@ -353,6 +363,67 @@ class CreateProfilePage extends StatelessWidget {
                 },
                 child: const Text('Save Profile'),
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class FirebaseForm extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Firebase test'),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              // Add the app logo at the top-center
+              Image.asset(
+                'Assets/Images/app_logo.png', // Replace with your app logo asset path
+                width: 300.0,
+                height: 300.0,
+              ),
+              const SizedBox(height: 5.0),
+              const Column(
+                children: <Widget>[
+                  // Email Field
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text('Item'),
+                      SizedBox(height: 5.0), // Add some spacing
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Enter the details, you want to save', // Placeholder text
+                          filled: true, // Fill the background
+                          fillColor: Colors.white, // Background color
+                          border:
+                          OutlineInputBorder(), // Add rectangular border
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15.0),
+                  // Password Field
+                ],
+              ),
+              const SizedBox(height: 15.0),
+              ElevatedButton(
+                onPressed: () {
+                  // Implement your login logic here
+                  print("send to firebase");
+                },
+                child: const Text('submit'),
+              ), // Add some spacing between the buttons
             ],
           ),
         ),

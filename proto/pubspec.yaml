@@ -24,11 +24,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^2.19.0
+  firebase_core: ^2.20.0
 
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
-  cloud_firestore: ^4.11.0
+  cloud_firestore: ^4.12.1
 
 dev_dependencies:
   flutter_test:

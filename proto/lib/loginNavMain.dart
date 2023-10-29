@@ -1,9 +1,6 @@
-import 'dart:js_interop_unsafe';
 
 import 'package:flutter/material.dart';
 import 'package:proto/NavMenuMain.dart';
-import 'package:firebase_core/firebase_core.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
@@ -392,6 +389,24 @@ class _FirebaseFormState extends State<FirebaseForm> {
   final _formKey = GlobalKey<FormState>(debugLabel: "_FirebaseFormState");
   final _controller = TextEditingController();
 
+  Future<void> updateDocumentCategory(String documentId, Map<String, dynamic> updatedData) async{
+    await FirebaseFirestore.instance.collection('category').doc(documentId).update(updatedData);
+  }
+
+  Future<void> addDocumentCategory(Map<String, dynamic> data) async{
+    CollectionReference collection = FirebaseFirestore.instance.collection('category');
+    await collection.add(data);
+  }
+
+  Future<QuerySnapshot> GetAllDocuments(String id) async {
+    CollectionReference collection = FirebaseFirestore.instance.collection(id);
+    return await collection.get();
+  }
+
+  Future<void> deleteDocumentCategory(String documentId) async{
+    CollectionReference collection = FirebaseFirestore.instance.collection('category');
+    await collection.doc(documentId).delete();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -441,28 +456,28 @@ class _FirebaseFormState extends State<FirebaseForm> {
               const SizedBox(height: 15.0),
               ElevatedButton(
                 onPressed: ()  async {
-                  if(_formKey.currentState!.validate()){
+                  //if(_formKey.currentState!.validate()){
                     await FirebaseFirestore.instance.collection('Category').add({'category': _controller.text});
                     _controller.clear();
-                  }
+                 // }
                 },
-                child: const Text('submit'),
+                child: const Text('CREATE / SUBMIT'),
               ),
               const SizedBox(height: 5.0,),
               ElevatedButton(
                 onPressed: () async {
                   // needs to get document id to include here
-                  DocumentSnapshot doc = await FirebaseFirestore.instance.collection('category').doc('id').get();
+                  DocumentSnapshot doc = await FirebaseFirestore.instance.collection('category').doc('ArhUlQYhSCOZwX5XJg9i').get();
                   _controller.text = (doc['category'] as String?)!;
 
                 },
-                child: const Text('RECEIVE'),
+                child: const Text('READ AND UPDATE'),
               ),
               const SizedBox(height: 5.0,),
               ElevatedButton(
                 onPressed: () async {
                   // needs to get document id to include here
-                  await FirebaseFirestore.instance.collection('category').doc('id').delete();
+                  await FirebaseFirestore.instance.collection('category').doc('ArhUlQYhSCOZwX5XJg9i').delete();
                 },
                 child: const Text('DELETE CATEGORY'),
               ),

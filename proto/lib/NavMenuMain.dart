@@ -184,10 +184,8 @@ class Saved extends StatelessWidget{
 
 // item list widget
 class ListSaved extends StatelessWidget{
-  const ListSaved({super.key});
 
-  final amountController = TextEditingController();
-  CollectionReference collRef = FirebaseFirestore.instance.collection("category");
+  const ListSaved({super.key});
 
   @override
   Widget build(BuildContext context){

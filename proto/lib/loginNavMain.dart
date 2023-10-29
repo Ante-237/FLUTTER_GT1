@@ -1,5 +1,12 @@
+import 'dart:js_interop_unsafe';
+
 import 'package:flutter/material.dart';
 import 'package:proto/NavMenuMain.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 
 
 class MyApp extends StatelessWidget {
@@ -84,6 +91,16 @@ class CoverPage extends StatelessWidget {
                   );
                 },
                 child: const Text('Sign Up'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Navigate to the Login page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => FirebaseForm()),
+                  );
+                },
+                child: const Text('Firebase form'),
               ),
             ],
           ),
@@ -353,6 +370,103 @@ class CreateProfilePage extends StatelessWidget {
                 },
                 child: const Text('Save Profile'),
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class FirebaseForm extends StatefulWidget {
+  const FirebaseForm({super.key});
+
+  @override
+  State<FirebaseForm> createState() => _FirebaseFormState();
+
+}
+
+class _FirebaseFormState extends State<FirebaseForm> {
+
+  final _formKey = GlobalKey<FormState>(debugLabel: "_FirebaseFormState");
+  final _controller = TextEditingController();
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Firebase test'),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              // Add the app logo at the top-center
+              Image.asset(
+                'Assets/Images/app_logo.png', // Replace with your app logo asset path
+                width: 300.0,
+                height: 300.0,
+              ),
+              const SizedBox(height: 5.0),
+              Column(
+                children: <Widget>[
+                  // Email Field
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const Text('Item'),
+                      const SizedBox(height: 5.0), // Add some spacing
+                      TextField(
+                        key: _formKey,
+                        controller: _controller,
+                        decoration: const InputDecoration(
+                          hintText: 'Enter the details, you want to save', // Placeholder text
+                          filled: true, // Fill the background
+                          fillColor: Colors.white, // Background color
+                          border:
+                          OutlineInputBorder(), // Add rectangular border
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 15.0),
+                  // Password Field
+                ],
+              ),
+              const SizedBox(height: 15.0),
+              ElevatedButton(
+                onPressed: ()  async {
+                  if(_formKey.currentState!.validate()){
+                  await FirebaseFirestore.instance.collection('Category').add({'category': _controller.text});
+                  _controller.clear();
+                  }
+                },
+                child: const Text('submit'),
+              ),
+              const SizedBox(height: 5.0,),
+              ElevatedButton(
+                onPressed: () async {
+                  // needs to get document id to include here
+                  DocumentSnapshot doc = await FirebaseFirestore.instance.collection('category').doc('id').get();
+                  _controller.text = (doc['category'] as String?)!;
+
+                },
+                child: const Text('RECEIVE'),
+              ),
+              const SizedBox(height: 5.0,),
+              ElevatedButton(
+                onPressed: () async {
+                  // needs to get document id to include here
+                  await FirebaseFirestore.instance.collection('category').doc('id').delete();
+                },
+                child: const Text('DELETE CATEGORY'),
+              ),
+              // Add some spacing between the buttons
             ],
           ),
         ),

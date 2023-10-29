@@ -1,3 +1,5 @@
+import 'dart:js_interop_unsafe';
+
 import 'package:flutter/material.dart';
 import 'package:proto/NavMenuMain.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -411,18 +413,18 @@ class _FirebaseFormState extends State<FirebaseForm> {
                 height: 300.0,
               ),
               const SizedBox(height: 5.0),
-              const Column(
+              Column(
                 children: <Widget>[
                   // Email Field
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('Item'),
-                      SizedBox(height: 5.0), // Add some spacing
+                      const Text('Item'),
+                      const SizedBox(height: 5.0), // Add some spacing
                       TextField(
-                      //  key: _formKey,
-                       // controller: _controller,
-                        decoration: InputDecoration(
+                        key: _formKey,
+                        controller: _controller,
+                        decoration: const InputDecoration(
                           hintText: 'Enter the details, you want to save', // Placeholder text
                           filled: true, // Fill the background
                           fillColor: Colors.white, // Background color
@@ -432,7 +434,7 @@ class _FirebaseFormState extends State<FirebaseForm> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 15.0),
+                  const SizedBox(height: 15.0),
                   // Password Field
                 ],
               ),
@@ -440,15 +442,31 @@ class _FirebaseFormState extends State<FirebaseForm> {
               ElevatedButton(
                 onPressed: ()  async {
                   if(_formKey.currentState!.validate()){
-                    await FirebaseFirestore.instance.collection('Category').add(<String, dynamic>{
-                      'text': _controller.text,
-                      'timesStamp': DateTime.now().millisecondsSinceEpoch
-                    });
-                    _controller.clear();
+                  await FirebaseFirestore.instance.collection('Category').add({'category': _controller.text});
+                  _controller.clear();
                   }
                 },
                 child: const Text('submit'),
-              ), // Add some spacing between the buttons
+              ),
+              const SizedBox(height: 5.0,),
+              ElevatedButton(
+                onPressed: () async {
+                  // needs to get document id to include here
+                  DocumentSnapshot doc = await FirebaseFirestore.instance.collection('category').doc('id').get();
+                  _controller.text = (doc['category'] as String?)!;
+
+                },
+                child: const Text('RECEIVE'),
+              ),
+              const SizedBox(height: 5.0,),
+              ElevatedButton(
+                onPressed: () async {
+                  // needs to get document id to include here
+                  await FirebaseFirestore.instance.collection('category').doc('id').delete();
+                },
+                child: const Text('DELETE CATEGORY'),
+              ),
+              // Add some spacing between the buttons
             ],
           ),
         ),

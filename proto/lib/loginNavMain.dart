@@ -372,7 +372,12 @@ class CreateProfilePage extends StatelessWidget {
 }
 
 
-class FirebaseForm extends StatelessWidget {
+class FirebaseForm extends StatefulWidget {
+  @override
+  State<FirebaseForm> createState() => _FirebaseFormState();
+}
+
+class _FirebaseFormState extends State<FirebaseForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

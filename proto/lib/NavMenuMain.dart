@@ -53,8 +53,7 @@ class _Lingua extends State {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.save), label: "Saved"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle), label: "Profile"),
+            BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Profile"),
           ],
           currentIndex: _currentPage,
           fixedColor: Colors.blue,

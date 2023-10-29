@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:proto/NavMenuMain.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+
 
 
 class MyApp extends StatelessWidget {
@@ -373,11 +378,19 @@ class CreateProfilePage extends StatelessWidget {
 
 
 class FirebaseForm extends StatefulWidget {
+  const FirebaseForm({super.key});
+
   @override
   State<FirebaseForm> createState() => _FirebaseFormState();
+
 }
 
 class _FirebaseFormState extends State<FirebaseForm> {
+
+  final _formKey = GlobalKey<FormState>(debugLabel: "_FirebaseFormState");
+  final _controller = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -407,6 +420,8 @@ class _FirebaseFormState extends State<FirebaseForm> {
                       Text('Item'),
                       SizedBox(height: 5.0), // Add some spacing
                       TextField(
+                      //  key: _formKey,
+                       // controller: _controller,
                         decoration: InputDecoration(
                           hintText: 'Enter the details, you want to save', // Placeholder text
                           filled: true, // Fill the background
@@ -423,9 +438,14 @@ class _FirebaseFormState extends State<FirebaseForm> {
               ),
               const SizedBox(height: 15.0),
               ElevatedButton(
-                onPressed: () {
-                  // Implement your login logic here
-                  print("send to firebase");
+                onPressed: ()  async {
+                  if(_formKey.currentState!.validate()){
+                    await FirebaseFirestore.instance.collection('Category').add(<String, dynamic>{
+                      'text': _controller.text,
+                      'timesStamp': DateTime.now().millisecondsSinceEpoch
+                    });
+                    _controller.clear();
+                  }
                 },
                 child: const Text('submit'),
               ), // Add some spacing between the buttons

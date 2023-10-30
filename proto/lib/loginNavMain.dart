@@ -390,24 +390,29 @@ class _FirebaseFormState extends State<FirebaseForm> {
   final _formKey = GlobalKey<FormState>(debugLabel: "_FirebaseFormState");
   final _controller = TextEditingController();
 
-
+  //template  update  operation
   Future<void> updateDocumentCategory(String documentId, Map<String, dynamic> updatedData) async{
-    await FirebaseFirestore.instance.collection('category').doc(documentId).update(updatedData);
+    await FirebaseFirestore.instance.collection('Category').doc(documentId).update(updatedData);
   }
 
 
+  //template create operations
   Future<void> addDocumentCategory(Map<String, dynamic> data) async{
-    CollectionReference collection = FirebaseFirestore.instance.collection('category');
+    CollectionReference collection = FirebaseFirestore.instance.collection('Category');
     await collection.add(data);
   }
 
+
+  // template  read operation
   Future<QuerySnapshot> GetAllDocuments(String id) async {
     CollectionReference collection = FirebaseFirestore.instance.collection(id);
     return await collection.get();
   }
 
+
+  //  template delete operation
   Future<void> deleteDocumentCategory(String documentId) async{
-    CollectionReference collection = FirebaseFirestore.instance.collection('category');
+    CollectionReference collection = FirebaseFirestore.instance.collection('Category');
     await collection.doc(documentId).delete();
   }
 

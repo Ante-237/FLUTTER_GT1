@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:proto/NavMenuMain.dart';
+import 'package:proto/app_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
@@ -389,9 +390,11 @@ class _FirebaseFormState extends State<FirebaseForm> {
   final _formKey = GlobalKey<FormState>(debugLabel: "_FirebaseFormState");
   final _controller = TextEditingController();
 
+
   Future<void> updateDocumentCategory(String documentId, Map<String, dynamic> updatedData) async{
     await FirebaseFirestore.instance.collection('category').doc(documentId).update(updatedData);
   }
+
 
   Future<void> addDocumentCategory(Map<String, dynamic> data) async{
     CollectionReference collection = FirebaseFirestore.instance.collection('category');
@@ -407,6 +410,8 @@ class _FirebaseFormState extends State<FirebaseForm> {
     CollectionReference collection = FirebaseFirestore.instance.collection('category');
     await collection.doc(documentId).delete();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -457,8 +462,10 @@ class _FirebaseFormState extends State<FirebaseForm> {
               ElevatedButton(
                 onPressed: ()  async {
                   //if(_formKey.currentState!.validate()){
-                    await FirebaseFirestore.instance.collection('Category').add({'category': _controller.text});
-                    _controller.clear();
+                  Map<String, dynamic> ObjectData = {'category', 'Food and New' } as Map<String, dynamic> ;
+                  await updateDocumentCategory('id_0', ObjectData );
+                   // await FirebaseFirestore.instance.collection('Category').add({'category': _controller.text});
+                    //_controller.clear();
                  // }
                 },
                 child: const Text('CREATE / SUBMIT'),
@@ -476,6 +483,7 @@ class _FirebaseFormState extends State<FirebaseForm> {
               const SizedBox(height: 5.0,),
               ElevatedButton(
                 onPressed: () async {
+
                   // needs to get document id to include here
                   await FirebaseFirestore.instance.collection('category').doc('ArhUlQYhSCOZwX5XJg9i').delete();
                 },

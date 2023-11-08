@@ -479,7 +479,7 @@ class _FirebaseFormState extends State<FirebaseForm> {
               ElevatedButton(
                 onPressed: () async {
                   // needs to get document id to include here
-                  DocumentSnapshot doc = await FirebaseFirestore.instance.collection('category').doc('ArhUlQYhSCOZwX5XJg9i').get();
+                  DocumentSnapshot doc = await FirebaseFirestore.instance.collection('category').doc('id_0').get();
                   _controller.text = (doc['category'] as String?)!;
 
                 },
@@ -490,7 +490,7 @@ class _FirebaseFormState extends State<FirebaseForm> {
                 onPressed: () async {
 
                   // needs to get document id to include here
-                  await FirebaseFirestore.instance.collection('category').doc('ArhUlQYhSCOZwX5XJg9i').delete();
+                  await deleteDocumentCategory('id_0');
                 },
                 child: const Text('DELETE CATEGORY'),
               ),

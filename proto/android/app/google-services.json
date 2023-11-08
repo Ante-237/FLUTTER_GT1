@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "404671123467",
+    "project_id": "proto-93114",
+    "storage_bucket": "proto-93114.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404671123467:android:355768a5e8f56c6953f70e",
+        "android_client_info": {
+          "package_name": "com.example.proto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9fHXRL3gyXwcNcTwHfmSWpD4U5eD72Ks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

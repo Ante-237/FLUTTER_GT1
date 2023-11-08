@@ -1,9 +1,8 @@
-import 'dart:js_interop_unsafe';
+
 
 import 'package:flutter/material.dart';
 import 'package:proto/NavMenuMain.dart';
-import 'package:firebase_core/firebase_core.dart';
-
+import 'package:proto/app_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
@@ -145,7 +144,7 @@ class LoginPage extends StatelessWidget {
                           filled: true, // Fill the background
                           fillColor: Colors.white, // Background color
                           border:
-                              OutlineInputBorder(), // Add rectangular border
+                          OutlineInputBorder(), // Add rectangular border
                         ),
                       ),
                     ],
@@ -164,7 +163,7 @@ class LoginPage extends StatelessWidget {
                           filled: true, // Fill the background
                           fillColor: Colors.white, // Background color
                           border:
-                              OutlineInputBorder(), // Add rectangular border
+                          OutlineInputBorder(), // Add rectangular border
                         ),
                       ),
                     ],
@@ -246,7 +245,7 @@ class SignupPage extends StatelessWidget {
                           filled: true, // Fill the background
                           fillColor: Colors.white, // Background color
                           border:
-                              OutlineInputBorder(), // Add rectangular border
+                          OutlineInputBorder(), // Add rectangular border
                         ),
                       ),
                     ],
@@ -265,7 +264,7 @@ class SignupPage extends StatelessWidget {
                           filled: true, // Fill the background
                           fillColor: Colors.white, // Background color
                           border:
-                              OutlineInputBorder(), // Add rectangular border
+                          OutlineInputBorder(), // Add rectangular border
                         ),
                       ),
                     ],
@@ -283,7 +282,7 @@ class SignupPage extends StatelessWidget {
                         builder: (context) => CreateProfilePage()),
                   );
                 },
-                child: Text('Sign Up'),
+                child: const Text('Sign Up'),
               ),
               const SizedBox(height: 15.0), // Add some spacing between the buttons
               Column(
@@ -392,6 +391,32 @@ class _FirebaseFormState extends State<FirebaseForm> {
   final _formKey = GlobalKey<FormState>(debugLabel: "_FirebaseFormState");
   final _controller = TextEditingController();
 
+  //template  update  operation
+  Future<void> updateDocumentCategory(String documentId, Map<String, dynamic> updatedData) async{
+    await FirebaseFirestore.instance.collection('Category').doc(documentId).update(updatedData);
+  }
+
+
+  //template create operations
+  Future<void> addDocumentCategory(Map<String, dynamic> data) async{
+    CollectionReference collection = FirebaseFirestore.instance.collection('Category');
+    await collection.add(data);
+  }
+
+
+  // template  read operation
+  Future<QuerySnapshot> GetAllDocuments(String id) async {
+    CollectionReference collection = FirebaseFirestore.instance.collection(id);
+    return await collection.get();
+  }
+
+
+  //  template delete operation
+  Future<void> deleteDocumentCategory(String documentId) async{
+    CollectionReference collection = FirebaseFirestore.instance.collection('Category');
+    await collection.doc(documentId).delete();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -441,28 +466,35 @@ class _FirebaseFormState extends State<FirebaseForm> {
               const SizedBox(height: 15.0),
               ElevatedButton(
                 onPressed: ()  async {
-                  if(_formKey.currentState!.validate()){
-                  await FirebaseFirestore.instance.collection('Category').add({'category': _controller.text});
-                  _controller.clear();
-                  }
+                  //if(_formKey.currentState!.validate()){
+                  Map<String, dynamic> ObjectData = {'category', 'Food and New' } as Map<String, dynamic> ;
+                  await updateDocumentCategory('id_0', ObjectData );
+                   // await FirebaseFirestore.instance.collection('Category').add({'category': _controller.text});
+                    //_controller.clear();
+                 // }
                 },
-                child: const Text('submit'),
+                child: const Text('CREATE / SUBMIT'),
+
               ),
               const SizedBox(height: 5.0,),
               ElevatedButton(
                 onPressed: () async {
                   // needs to get document id to include here
-                  DocumentSnapshot doc = await FirebaseFirestore.instance.collection('category').doc('id').get();
+
+                  DocumentSnapshot doc = await FirebaseFirestore.instance.collection('category').doc('id_0').get();
                   _controller.text = (doc['category'] as String?)!;
 
                 },
-                child: const Text('RECEIVE'),
+                child: const Text('READ AND UPDATE'),
+
               ),
               const SizedBox(height: 5.0,),
               ElevatedButton(
                 onPressed: () async {
+
                   // needs to get document id to include here
-                  await FirebaseFirestore.instance.collection('category').doc('id').delete();
+                  await deleteDocumentCategory('id_0');
+
                 },
                 child: const Text('DELETE CATEGORY'),
               ),

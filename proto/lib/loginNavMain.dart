@@ -1,4 +1,5 @@
 
+
 import 'package:flutter/material.dart';
 import 'package:proto/NavMenuMain.dart';
 import 'package:proto/app_state.dart';
@@ -417,7 +418,6 @@ class _FirebaseFormState extends State<FirebaseForm> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -474,16 +474,19 @@ class _FirebaseFormState extends State<FirebaseForm> {
                  // }
                 },
                 child: const Text('CREATE / SUBMIT'),
+
               ),
               const SizedBox(height: 5.0,),
               ElevatedButton(
                 onPressed: () async {
                   // needs to get document id to include here
+
                   DocumentSnapshot doc = await FirebaseFirestore.instance.collection('category').doc('id_0').get();
                   _controller.text = (doc['category'] as String?)!;
 
                 },
                 child: const Text('READ AND UPDATE'),
+
               ),
               const SizedBox(height: 5.0,),
               ElevatedButton(
@@ -491,6 +494,7 @@ class _FirebaseFormState extends State<FirebaseForm> {
 
                   // needs to get document id to include here
                   await deleteDocumentCategory('id_0');
+
                 },
                 child: const Text('DELETE CATEGORY'),
               ),

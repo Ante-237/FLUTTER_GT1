@@ -6,6 +6,7 @@ import 'package:proto/app_state.dart';
 import 'loginNavMain.dart';
 import 'firebase_options.dart';
 
+
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,3 +15,4 @@ void main() async {
 
   runApp(MyApp());
 }
+

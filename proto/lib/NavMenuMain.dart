@@ -12,7 +12,7 @@ void main() {
 }
  */
 
-class Lingua extends  StatefulWidget{
+class Lingua extends StatefulWidget {
   const Lingua({super.key});
 
   @override
@@ -22,60 +22,54 @@ class Lingua extends  StatefulWidget{
 }
 
 class _Lingua extends State {
-
   var _currentPage = 0;
 
-  final _pages = [
-    const Home(),
-    const Saved(),
-    const Profile()
-  ];
+  final _pages = [const Home(), const Saved(), const Profile()];
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: "Lingua Pal",
-    theme: ThemeData(
-      useMaterial3: true,
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue, brightness: Brightness.light),
-      textTheme:  TextTheme(displayLarge: const TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),
-        titleLarge: GoogleFonts.comfortaa(
-          fontSize: 30,
-          fontStyle : FontStyle.normal,
+    return MaterialApp(
+      title: "Lingua Pal",
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.blue, brightness: Brightness.light),
+        textTheme: TextTheme(
+          displayLarge: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+          titleLarge: GoogleFonts.comfortaa(
+            fontSize: 30,
+            fontStyle: FontStyle.normal,
+          ),
+          bodyMedium: GoogleFonts.merriweather(),
+          displaySmall: GoogleFonts.pacifico(),
         ),
-        bodyMedium: GoogleFonts.merriweather(),
-        displaySmall: GoogleFonts.pacifico(),
       ),
-    ),
-
-
-    home: Scaffold(
-      body: Center(child: _pages.elementAt(_currentPage)),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.save), label: "Saved"),
-          BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Profile"),
-        ],
-        currentIndex: _currentPage,
-        fixedColor: Colors.blue,
-        onTap: (int inIndex){
-          setState(() {
-            _currentPage = inIndex;
-          }
-          );
-        },
+      home: Scaffold(
+        body: Center(child: _pages.elementAt(_currentPage)),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.save), label: "Saved"),
+            BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Profile"),
+          ],
+          currentIndex: _currentPage,
+          fixedColor: Colors.blue,
+          onTap: (int inIndex) {
+            setState(() {
+              _currentPage = inIndex;
+            });
+          },
+        ),
       ),
-    ),
     );
   }
 }
 
-
 // page one
-class Home extends StatelessWidget{
+class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
@@ -86,12 +80,16 @@ class Home extends StatelessWidget{
       ),
       body: GridView.count(
         padding: const EdgeInsets.all(4.0),
-        crossAxisCount: 2, childAspectRatio: 1.5,
-        mainAxisSpacing: 6.0, crossAxisSpacing : 4.0,
+        crossAxisCount: 2,
+        childAspectRatio: 1.5,
+        mainAxisSpacing: 6.0,
+        crossAxisSpacing: 4.0,
         children: const [
           GridTile(child: Category()),
           GridTile(child: Category()),
-          GridTile(child: Category(),),
+          GridTile(
+            child: Category(),
+          ),
           GridTile(child: Category()),
           GridTile(child: Category()),
           GridTile(child: Category()),
@@ -102,13 +100,12 @@ class Home extends StatelessWidget{
   }
 }
 
-
 // categories in grid view
-class  Category extends StatelessWidget{
+class Category extends StatelessWidget {
   const Category({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return FloatingActionButton.small(
       onPressed: () {
         Navigator.push(
@@ -142,7 +139,9 @@ class  Category extends StatelessWidget{
                 alignment: Alignment.bottomLeft,
                 child: Text('Category'),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               const Align(
                 alignment: Alignment.bottomCenter,
                 child: Icon(
@@ -151,7 +150,7 @@ class  Category extends StatelessWidget{
                   size: 50,
                   semanticLabel: 'Text to announce in accessibility modes',
                 ),
-                ),
+              ),
             ],
           ),
         ),
@@ -160,7 +159,7 @@ class  Category extends StatelessWidget{
   }
 }
 
-class Saved extends StatelessWidget{
+class Saved extends StatelessWidget {
   const Saved({super.key});
 
   @override
@@ -170,12 +169,12 @@ class Saved extends StatelessWidget{
         title: const Center(child: Text('SAVED')),
       ),
       body: ListView(
-      children: const <Widget>[
-        ListSaved(),
-        ListSaved(),
-        ListSaved(),
-        ListSaved(),
-      ],
+        children: const <Widget>[
+          ListSaved(),
+          ListSaved(),
+          ListSaved(),
+          ListSaved(),
+        ],
       ),
     );
   }
@@ -187,7 +186,7 @@ class ListSaved extends StatelessWidget{
   const ListSaved({super.key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return const Card(
       child: ListTile(
         leading: Icon(Icons.save),
@@ -221,7 +220,6 @@ class Profile extends StatelessWidget{
 }
  */
 
-
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
@@ -233,27 +231,34 @@ class Profile extends StatelessWidget {
       ),
       body: Center(
         child: Padding(
-          padding: const  EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               // Profile Picture Section
-              const Image(image: AssetImage('Assets/Images/app_logo.png'), width: 200, height: 200,),
-              const SizedBox(height: 20,),
-              const TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder() ,
-                label: Text('FirstUser')),
+              const Image(
+                image: AssetImage('Assets/Images/app_logo.png'),
+                width: 200,
+                height: 200,
+              ),
+              const SizedBox(
+                height: 20,
               ),
               const TextField(
                 obscureText: true,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder() ,
+                    border: OutlineInputBorder(), label: Text('FirstUser')),
+              ),
+              const TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
                     label: Text('user@gmail.com')),
               ),
-              const SizedBox(height: 30,),
+              const SizedBox(
+                height: 30,
+              ),
               const TextField(
                 maxLength: 30,
                 maxLengthEnforcement: MaxLengthEnforcement.none,
@@ -274,7 +279,9 @@ class Profile extends StatelessWidget {
                   helperText: 'avoid spaces',
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               ElevatedButton(
                 onPressed: () {
                   // Implement save profile logic here
@@ -292,4 +299,3 @@ class Profile extends StatelessWidget {
     );
   }
 }
-

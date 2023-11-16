@@ -4,7 +4,7 @@ class FeedbackInput extends StatelessWidget {
   final String? labelText;
   final String? hintText;
 
-  FeedbackInput({this.labelText, this.hintText});
+  const FeedbackInput({super.key, this.labelText, this.hintText});
 
   @override
   Widget build(BuildContext context) {

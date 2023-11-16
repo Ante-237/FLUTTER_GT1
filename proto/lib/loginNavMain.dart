@@ -1,25 +1,28 @@
-import 'dart:js_interop_unsafe';
 
 import 'package:flutter/material.dart';
 import 'package:proto/NavMenuMain.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CoverPage(),
+      home: const CoverPage(),
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xFF27DCFC)),
     );
   }
 }
 
 class CoverPage extends StatelessWidget {
+  const CoverPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +54,7 @@ class CoverPage extends StatelessWidget {
                   // Navigate to the Login page
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
                 },
                 child: const Text('Log In'),
@@ -87,7 +90,7 @@ class CoverPage extends StatelessWidget {
                   // Navigate to the Signup page
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SignupPage()),
+                    MaterialPageRoute(builder: (context) => const SignupPage()),
                   );
                 },
                 child: const Text('Sign Up'),
@@ -97,7 +100,7 @@ class CoverPage extends StatelessWidget {
                   // Navigate to the Login page
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => FirebaseForm()),
+                    MaterialPageRoute(builder: (context) => const FirebaseForm()),
                   );
                 },
                 child: const Text('Firebase form'),
@@ -111,6 +114,8 @@ class CoverPage extends StatelessWidget {
 }
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -196,7 +201,7 @@ class LoginPage extends StatelessWidget {
                       // Navigate to the Signup page
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SignupPage()),
+                        MaterialPageRoute(builder: (context) => const SignupPage()),
                       );
                     },
                     child: const Text('Sign Up'),
@@ -210,8 +215,18 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
-class SignupPage extends StatelessWidget {
+  @override
+  State<SignupPage> createState() => _SignupPage();
+
+}
+class _SignupPage extends State<SignupPage> {
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -232,7 +247,7 @@ class SignupPage extends StatelessWidget {
                 height: 300.0,
               ),
               const SizedBox(height: 5.0),
-              const Column(
+              Column(
                 children: <Widget>[
                   // Email Field (for Signup)
                   Column(
@@ -241,7 +256,8 @@ class SignupPage extends StatelessWidget {
                       Text('Email'),
                       SizedBox(height: 5.0), // Add some spacing
                       TextField(
-                        decoration: InputDecoration(
+                        controller: _emailController,
+                        decoration: const InputDecoration(
                           hintText: 'Enter Email', // Placeholder text
                           filled: true, // Fill the background
                           fillColor: Colors.white, // Background color
@@ -251,16 +267,17 @@ class SignupPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 15.0),
+                  const SizedBox(height: 15.0),
                   // Password Field (for Signup)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('Password'),
-                      SizedBox(height: 5.0), // Add some spacing
+                      const Text('Password'),
+                      const SizedBox(height: 5.0), // Add some spacing
                       TextField(
+                        controller: _passwordController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Enter Password', // Placeholder text
                           filled: true, // Fill the background
                           fillColor: Colors.white, // Background color
@@ -274,16 +291,24 @@ class SignupPage extends StatelessWidget {
               ),
               const SizedBox(height: 15.0),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   // Implement signup logic here
                   // Navigate to the Create Profile page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CreateProfilePage()),
-                  );
+                  final message = await AuthService().registration(email: _emailController.text, password: _passwordController.text);
+                  print('===========');
+                  print(message);
+                  print('============');
+                  if (message == "success") {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CreateProfilePage()),
+                    );
+                  }
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message!)));
+
                 },
-                child: Text('Sign Up'),
+                child: const Text('Sign Up'),
               ),
               const SizedBox(height: 15.0), // Add some spacing between the buttons
               Column(
@@ -293,7 +318,7 @@ class SignupPage extends StatelessWidget {
                       // Navigate back to the Login page
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
                       );
                     },
                     child: const Text('Already have an account? Login'),
@@ -309,6 +334,8 @@ class SignupPage extends StatelessWidget {
 }
 
 class CreateProfilePage extends StatelessWidget {
+  const CreateProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -472,5 +499,47 @@ class _FirebaseFormState extends State<FirebaseForm> {
         ),
       ),
     );
+  }
+}
+
+class AuthService {
+  final String name = '';
+  Future<String?> registration({
+    required String email,
+    required String password,
+}) async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+      return 'success';
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "weak-password") {
+        return 'The password provided is too weak.';
+      } else if (e.code == 'email-already-in-use') {
+        return 'The email is already being used. Try another one';
+      } else {
+        return e.message;
+      }
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
+  Future<String?> login({
+    required String email,
+    required String password,
+}) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        return "User with that email not found";
+      } else if (e.code == 'wrong-password') {
+        return "Wrong password, try again";
+      } else {
+        return e.message;
+      }
+    } catch (e) {
+      return e.toString();
+    }
   }
 }

@@ -19,20 +19,20 @@ class ListScreen extends StatelessWidget {
           ),
           title: const Text('List'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(left: 16.0),
+        body: const Padding(
+          padding: EdgeInsets.only(left: 16.0),
           child: Column(children: [
-            const SizedBox(height: 36.0),
+            SizedBox(height: 36.0),
             Item(
               title: 'FoodDatum name',
               description: "FoodDatum description",
             ),
-            const SizedBox(height: 20.0),
+            SizedBox(height: 20.0),
             Item(
               title: 'FoodDatum name',
               description: "FoodDatum description",
             ),
-            const SizedBox(height: 20.0),
+            SizedBox(height: 20.0),
             Item(
               title: 'FoodDatum name',
               description: "FoodDatum description",

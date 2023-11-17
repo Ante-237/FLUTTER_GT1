@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:proto/NavMenuMain.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -113,8 +114,41 @@ class CoverPage extends StatelessWidget {
   }
 }
 
-class LoginPage extends StatelessWidget {
+
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPage();
+}
+
+class _LoginPage extends State<LoginPage> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  void signInWithGoogle() async {
+    print("I got here");
+    FirebaseAuth auth = FirebaseAuth.instance;
+    final GoogleSignIn googleSignIn = GoogleSignIn(clientId: "323682521450-n9h7eqmumkgvh5aan8auqi3cd0osj12v.apps.googleusercontent.com");
+
+    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+    final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
+
+    final AuthCredential credential = GoogleAuthProvider.credential(accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+    final UserCredential userCredential = await auth.signInWithCredential(credential);
+    print("========");
+    print(userCredential.user?.email);
+    print("========");
+    if (!context.mounted) return;
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const CreateProfilePage()),
+      );
+
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +170,7 @@ class LoginPage extends StatelessWidget {
                 height: 300.0,
               ),
               const SizedBox(height: 5.0),
-              const Column(
+              Column(
                 children: <Widget>[
                   // Email Field
                   Column(
@@ -145,7 +179,8 @@ class LoginPage extends StatelessWidget {
                       Text('Email'),
                       SizedBox(height: 5.0), // Add some spacing
                       TextField(
-                        decoration: InputDecoration(
+                        controller: _emailController,
+                        decoration: const InputDecoration(
                           hintText: 'Enter Email', // Placeholder text
                           filled: true, // Fill the background
                           fillColor: Colors.white, // Background color
@@ -163,8 +198,9 @@ class LoginPage extends StatelessWidget {
                       Text('Password'),
                       SizedBox(height: 5.0), // Add some spacing
                       TextField(
+                        controller: _passwordController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Enter Password', // Placeholder text
                           filled: true, // Fill the background
                           fillColor: Colors.white, // Background color
@@ -178,12 +214,22 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 15.0),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   // Implement your login logic here
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Lingua()),
-                  );
+                  final message = await AuthService().login(email: _emailController.text, password: _passwordController.text);
+                  print('================');
+                  print(message);
+                  print('=================');
+                  if (!context.mounted) return;
+                  if (message == "success") {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Lingua()),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message!)));
+                  }
+
                 },
                 child: const Text('Login'),
               ),
@@ -198,13 +244,30 @@ class LoginPage extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      // Navigate to the Signup page
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const SignupPage()),
-                      );
+                      // Implement the forgot password functionality
+                      signInWithGoogle();
                     },
-                    child: const Text('Sign Up'),
+                    child: const Text('Google login'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      // Implement your login logic here
+                      final message = await AuthService().login(email: _emailController.text, password: _passwordController.text);
+                      print('================');
+                      print(message);
+                      print('=================');
+                      if (!context.mounted) return;
+                      if (message == "success") {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const Lingua()),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message!)));
+                      }
+
+                    },
+                    child: const Text('Login'),
                   ),
                 ],
               ),
@@ -253,8 +316,8 @@ class _SignupPage extends State<SignupPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('Email'),
-                      SizedBox(height: 5.0), // Add some spacing
+                      const Text('Email'),
+                      const SizedBox(height: 5.0), // Add some spacing
                       TextField(
                         controller: _emailController,
                         decoration: const InputDecoration(
@@ -298,6 +361,7 @@ class _SignupPage extends State<SignupPage> {
                   print('===========');
                   print(message);
                   print('============');
+                  if (!context.mounted) return;
                   if (message == "success") {
                     Navigator.push(
                       context,
@@ -530,6 +594,7 @@ class AuthService {
 }) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+      return "success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         return "User with that email not found";

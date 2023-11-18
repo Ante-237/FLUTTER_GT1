@@ -125,7 +125,6 @@ class _LoginPage extends State<LoginPage> {
   final _passwordController = TextEditingController();
 
   void signInWithGoogle() async {
-    print("I got here");
     FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn(clientId: "323682521450-n9h7eqmumkgvh5aan8auqi3cd0osj12v.apps.googleusercontent.com");
 

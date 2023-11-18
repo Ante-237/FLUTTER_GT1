@@ -1,12 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:proto/NavMenuMain.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-
 
 
 class MyApp extends StatelessWidget {
@@ -96,6 +92,7 @@ class CoverPage extends StatelessWidget {
                 },
                 child: const Text('Sign Up'),
               ),
+              /*
               ElevatedButton(
                 onPressed: () {
                   // Navigate to the Login page
@@ -106,6 +103,7 @@ class CoverPage extends StatelessWidget {
                 },
                 child: const Text('Firebase form'),
               ),
+               */
             ],
           ),
         ),
@@ -249,6 +247,7 @@ class _LoginPage extends State<LoginPage> {
                     },
                     child: const Text('Google login'),
                   ),
+                  /*
                   ElevatedButton(
                     onPressed: () async {
                       // Implement your login logic here
@@ -269,6 +268,7 @@ class _LoginPage extends State<LoginPage> {
                     },
                     child: const Text('Login'),
                   ),
+                   */
                 ],
               ),
             ],
@@ -469,7 +469,7 @@ class CreateProfilePage extends StatelessWidget {
   }
 }
 
-
+/*
 class FirebaseForm extends StatefulWidget {
   const FirebaseForm({super.key});
 
@@ -565,6 +565,7 @@ class _FirebaseFormState extends State<FirebaseForm> {
     );
   }
 }
+ */
 
 class AuthService {
   final String name = '';

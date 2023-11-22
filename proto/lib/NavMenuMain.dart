@@ -1,10 +1,9 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:proto/index.dart';
-import 'package:proto/loginNavMain.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 /*
 void main() {
@@ -219,9 +218,19 @@ class Profile extends StatelessWidget{
 }
  */
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
 
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+
+
+  User? user = FirebaseAuth.instance.currentUser;
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -244,16 +253,18 @@ class Profile extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), label: Text('FirstUser')),
+              // Text(user?. ?? "default"),
+              TextField(
+                readOnly: true,
+                controller: nameController..text = user?.displayName ??  user?.email?.split("@")[0] ?? "user 1",
+                // decoration: const InputDecoration(
+                //     label: Text("display name")),
               ),
-              const TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    label: Text('user@gmail.com')),
+              TextField(
+                readOnly: true,
+                controller: emailController..text = user?.email ?? "current email",
+                // decoration: const InputDecoration(
+                //     label: Text("Email")),
               ),
               const SizedBox(
                 height: 30,
@@ -284,6 +295,7 @@ class Profile extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Implement save profile logic here
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const Lingua()),

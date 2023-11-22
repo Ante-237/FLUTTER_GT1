@@ -4,7 +4,7 @@ class Item extends StatelessWidget {
   final String title;
   final String description;
 
-  Item({
+  const Item({super.key, 
     required this.title,
     required this.description,
   });

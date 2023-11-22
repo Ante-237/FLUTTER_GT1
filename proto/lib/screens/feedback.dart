@@ -20,17 +20,17 @@ class FeedbackScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(children: [
             const SizedBox(height: 36.0),
-            FeedbackInput(
+            const FeedbackInput(
               hintText: 'Enter name...',
               labelText: "Name",
             ),
             const SizedBox(height: 16.0),
-            FeedbackInput(
+            const FeedbackInput(
               hintText: 'Enter Title...',
               labelText: "Title",
             ),
             const SizedBox(height: 16.0),
-            FeedbackInput(
+            const FeedbackInput(
               hintText: 'Enter Description...',
               labelText: "Description",
             ),

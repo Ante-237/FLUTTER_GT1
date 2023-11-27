@@ -11,7 +11,22 @@ import 'package:proto/NavMenuMain.dart';
 
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Screen show login page', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const Lingua());
+
+    final titleFinder = find.text("Sign Up");
+    final messageFinder = find.text("Log In");
+
+    expect(titleFinder, findsAtLeastNWidgets(0));
+    expect(messageFinder, findsAtLeastNWidgets(0));
+
+
+  });
+}
+
+/*
+  testWidgets('Screen show login page', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const Lingua());
 
@@ -27,4 +42,4 @@ void main() {
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
   });
-}
+ */

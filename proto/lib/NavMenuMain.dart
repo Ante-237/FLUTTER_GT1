@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -52,7 +51,8 @@ class _Lingua extends State {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.save), label: "Saved"),
-            BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: "Profile"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle), label: "Profile"),
           ],
           currentIndex: _currentPage,
           fixedColor: Colors.blue,
@@ -106,55 +106,56 @@ class Category extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton.small(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const MyAppI()),
-        );
-      },
-      child: Card(
-        elevation: 1,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: Theme.of(context).colorScheme.primary,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MyAppI()),
+          );
+        },
+        child: Card(
+          elevation: 1,
+          shape: RoundedRectangleBorder(
+            side: BorderSide(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
           ),
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-        ),
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(12, 4, 4, 4),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  icon: const Icon(Icons.more_vert),
-                  onPressed: () {
-                    // more actions in future
-                  },
-                ),
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(12, 4, 4, 4),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: IconButton(
+                      icon: const Icon(Icons.more_vert),
+                      onPressed: () {
+                        // more actions in future
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 1),
+                  const Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text('Category'),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Icon(
+                      Icons.cookie,
+                      color: Colors.pink,
+                      size: 50,
+                      semanticLabel: 'Text to announce in accessibility modes',
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 1),
-              const Align(
-                alignment: Alignment.bottomLeft,
-                child: Text('Category'),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Align(
-                alignment: Alignment.bottomCenter,
-                child: Icon(
-                  Icons.cookie,
-                  color: Colors.pink,
-                  size: 50,
-                  semanticLabel: 'Text to announce in accessibility modes',
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
 
@@ -226,8 +227,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-
-
   User? user = FirebaseAuth.instance.currentUser;
   final nameController = TextEditingController();
   final emailController = TextEditingController();
@@ -256,13 +255,17 @@ class _ProfileState extends State<Profile> {
               // Text(user?. ?? "default"),
               TextField(
                 readOnly: true,
-                controller: nameController..text = user?.displayName ??  user?.email?.split("@")[0] ?? "user 1",
+                controller: nameController
+                  ..text = user?.displayName ??
+                      user?.email?.split("@")[0] ??
+                      "user 1",
                 // decoration: const InputDecoration(
                 //     label: Text("display name")),
               ),
               TextField(
                 readOnly: true,
-                controller: emailController..text = user?.email ?? "current email",
+                controller: emailController
+                  ..text = user?.email ?? "current email",
                 // decoration: const InputDecoration(
                 //     label: Text("Email")),
               ),

@@ -1,6 +1,121 @@
 import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatelessWidget {
+  const DetailsScreen({Key? key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: const Text('Details'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 16.0),
+            Center(
+              child: Image.asset(
+                'assets/images/app_logo.png',
+                width: 400.0,
+                height: 400.0,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Description',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  SizedBox(height: 2.0),
+                  Text(
+                    'This is just test material',
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                  Text(
+                    'description description',
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16.0),
+            Align(
+              alignment: Alignment.center,
+              child: ElevatedButton.icon(
+                style: ButtonStyle(
+                  padding: MaterialStateProperty.all<EdgeInsets>(
+                    const EdgeInsets.symmetric(
+                        horizontal: 20.0, vertical: 16.0),
+                  ),
+                ),
+                onPressed: () {},
+                icon: const Icon(Icons.add),
+                label: const Text(
+                  'Save',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16.0),
+            Container(
+              height: 80.0,
+              width: double.infinity,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, -3),
+                    ),
+                  ],
+                ),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: ElevatedButton.icon(
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                        const EdgeInsets.symmetric(
+                            horizontal: 32.0, vertical: 16.0),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/feedback');
+                    },
+                    icon: const Icon(Icons.add),
+                    label: const Text(
+                      'ADD FEEDBACK',
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/* class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
 
   @override
@@ -28,8 +143,7 @@ class DetailsScreen extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: 16.0),
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -76,7 +190,8 @@ class DetailsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16.0),
-          SizedBox(
+          // ignore: sized_box_for_whitespace
+          Container(
             height: 80.0,
             width: double.infinity,
             child: Container(
@@ -120,4 +235,4 @@ class DetailsScreen extends StatelessWidget {
       ),
     );
   }
-}
+} */

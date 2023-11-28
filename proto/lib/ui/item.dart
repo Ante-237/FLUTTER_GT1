@@ -4,7 +4,8 @@ class Item extends StatelessWidget {
   final String title;
   final String description;
 
-  const Item({super.key, 
+  const Item({
+    super.key,
     required this.title,
     required this.description,
   });
@@ -23,7 +24,6 @@ class Item extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               width: 1.0,
             ),
-
           ),
         ),
         child: Row(
@@ -31,14 +31,14 @@ class Item extends StatelessWidget {
           children: [
             ClipOval(
                 child: Container(
-                  color: Colors.grey,
-                  child: Image.asset(
-                    'assets/images/app_logo.png',
-                    width: 50.0,
-                    height: 50.0,
-                    fit: BoxFit.cover,
-                  ),
-                )),
+              color: Colors.grey,
+              child: Image.asset(
+                'assets/images/app_logo.png',
+                width: 50.0,
+                height: 50.0,
+                fit: BoxFit.cover,
+              ),
+            )),
             const SizedBox(width: 16.0),
             Align(
               alignment: Alignment.center,
@@ -55,11 +55,11 @@ class Item extends StatelessWidget {
                   ),
                   const SizedBox(
                       height:
-                      4.0), // Add vertical spacing between title and description
+                          4.0), // Add vertical spacing between title and description
                   Text(
                     description,
-                    style:
-                    const TextStyle(fontSize: 14.0, color: Color(0xFF666666)),
+                    style: const TextStyle(
+                        fontSize: 14.0, color: Color(0xFF666666)),
                   ),
                 ],
               ),
@@ -67,7 +67,6 @@ class Item extends StatelessWidget {
           ],
         ),
       ),
-    )
-      ;
+    );
   }
 }

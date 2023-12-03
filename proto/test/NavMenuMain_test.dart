@@ -4,10 +4,11 @@ import 'package:proto/NavMenuMain.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
+import 'package:firestore_fakes/firestore_fakes.dart';
 
 void main() {
   testWidgets('Home Widget UI Test', (WidgetTester tester) async {
-    final firestore = FakeFirebaseFirestore();
+    final firestore = FirebaseFirestoreFake();
     await tester.pumpWidget(const MaterialApp(
       home: Scaffold(
         body: Home(firestore: firestore),

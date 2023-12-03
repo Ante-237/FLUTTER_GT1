@@ -6,7 +6,7 @@ void main() {
   testWidgets('ListScreen Widget Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: ListScreen(),
       ),
     );

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   testWidgets('LoginPage UI test', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(home: LoginPage()));
+    await tester.pumpWidget(const MaterialApp(home: LoginPage()));
 
     expect(find.text('Login Page'), findsOneWidget);
     expect(find.text('Email'), findsOneWidget);
